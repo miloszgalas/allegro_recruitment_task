@@ -8,7 +8,7 @@ app = Flask(__name__)
 def get_repos_list():
     response = requests.get('https://api.github.com/orgs/allegro/repos')
 
-    j = json.loads(response.content)
+    j = response.json()
 
     repos = []
 
@@ -21,7 +21,7 @@ def get_repos_list():
 def get_sum_stars():
     response = requests.get('https://api.github.com/orgs/allegro/repos')
 
-    j = json.loads(response.content)
+    j = response.json()
     stars = 0
     for repo in j:
         stars += repo['stargazers_count']
